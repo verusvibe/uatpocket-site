@@ -1,0 +1,43 @@
+name: Website checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_BASE_PATH: /uatpocket-site
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:config
+      # Preview builds are test-only and never uploaded as Pages deployments.
+      - run: npm run build:preview
+      - run: npx playwright install --with-deps chromium
+      - name: Browser checks at the repository subpath
+        run: |
+          npm run preview > /tmp/uat-pocket-preview.log 2>&1 &
+          trap 'kill $!' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3000/uatpocket-site/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-results
+          path: test-results/
+          retention-days: 7

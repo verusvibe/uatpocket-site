@@ -1,0 +1,42 @@
+{
+  "name": "uat-pocket-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "node scripts/check-launch.mjs && next build",
+    "build:preview": "next build",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "playwright test",
+    "format": "prettier --write app components scripts *.json *.mjs",
+    "preview": "node scripts/serve-preview.mjs",
+    "test:config": "node --test tests/launch.test.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@eslint/eslintrc": "^3.3.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "lighthouse": "^13.5.0",
+    "prettier": "^3.6.0",
+    "sharp": "^0.35.4",
+    "typescript": "^5.9.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.23"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

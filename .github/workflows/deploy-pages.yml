@@ -1,0 +1,66 @@
+name: Deploy GitHub Pages
+# Publish explicitly after owner configuration is complete.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_LEGAL_ENTITY: ${{ vars.NEXT_PUBLIC_LEGAL_ENTITY }}
+      NEXT_PUBLIC_COPYRIGHT_OWNER: ${{ vars.NEXT_PUBLIC_COPYRIGHT_OWNER }}
+      NEXT_PUBLIC_COPYRIGHT_YEAR: ${{ vars.NEXT_PUBLIC_COPYRIGHT_YEAR }}
+      NEXT_PUBLIC_CONTACT_EMAIL: ${{ vars.NEXT_PUBLIC_CONTACT_EMAIL }}
+      NEXT_PUBLIC_SUPPORT_EMAIL: ${{ vars.NEXT_PUBLIC_SUPPORT_EMAIL }}
+      NEXT_PUBLIC_SUPPORT_PHONE: ${{ vars.NEXT_PUBLIC_SUPPORT_PHONE }}
+      NEXT_PUBLIC_SECURITY_EMAIL: ${{ vars.NEXT_PUBLIC_SECURITY_EMAIL }}
+      NEXT_PUBLIC_EFFECTIVE_DATE: ${{ vars.NEXT_PUBLIC_EFFECTIVE_DATE }}
+      NEXT_PUBLIC_RETENTION_POLICY: ${{ vars.NEXT_PUBLIC_RETENTION_POLICY }}
+      NEXT_PUBLIC_PROCESSING_REGIONS: ${{ vars.NEXT_PUBLIC_PROCESSING_REGIONS }}
+      NEXT_PUBLIC_SERVICE_PROVIDER_DETAILS: ${{ vars.NEXT_PUBLIC_SERVICE_PROVIDER_DETAILS }}
+      NEXT_PUBLIC_AI_PROCESSING_TERMS: ${{ vars.NEXT_PUBLIC_AI_PROCESSING_TERMS }}
+      NEXT_PUBLIC_LEGAL_BASES: ${{ vars.NEXT_PUBLIC_LEGAL_BASES }}
+      NEXT_PUBLIC_EARLY_ACCESS_ENDPOINT: ${{ vars.NEXT_PUBLIC_EARLY_ACCESS_ENDPOINT }}
+      NEXT_PUBLIC_SUPPORT_ENDPOINT: ${{ vars.NEXT_PUBLIC_SUPPORT_ENDPOINT }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Read Pages URL configuration
+        id: pages
+        uses: actions/configure-pages@v5
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:config
+      - name: Validate launch details and build production export
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

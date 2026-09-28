@@ -27,3 +27,7 @@ Browser screenshots/PDFs are generated under ignored `test-results/`. The UI tes
 - Lint and type checks passed; type generation now runs before TypeScript to support fresh clones.
 - Dependencies, build output, local environment files, screenshots/PDF test results and temporary verification files are excluded from Git.
 - Nothing has been pushed or published. GitHub Pages settings, repository variables and approved legal content remain launch prerequisites; see `.github/README.md`.
+
+## Mobile navigation fix — 27 September 2026
+
+Reproduced failed Privacy, Support and One-Pager taps on the live site in mobile WebKit. A null-related-target blur hid the menu before click, redirecting the click to the body. Kept the menu open for that event; outside pointer events still dismiss it, and keyboard focus transitions and Escape retain their behavior. All 36 browser tests pass, including Chromium/WebKit touch navigation, section links and outside dismissal. Lint, type checking and optimized compilation pass. The fix is local and has not been pushed or deployed.

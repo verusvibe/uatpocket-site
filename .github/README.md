@@ -37,7 +37,7 @@ NEXT_PUBLIC_BASE_PATH=/uatpocket-site npm run preview
 Open `http://127.0.0.1:3000/uatpocket-site/`. In another terminal:
 
 ```sh
-npx playwright install chromium
+npx playwright install chromium webkit
 NEXT_PUBLIC_BASE_PATH=/uatpocket-site npm test
 npm run test:config
 ```

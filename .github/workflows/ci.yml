@@ -25,7 +25,7 @@ jobs:
       - run: npm run test:config
       # Preview builds are test-only and never uploaded as Pages deployments.
       - run: npm run build:preview
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - name: Browser checks at the repository subpath
         run: |
           npm run preview > /tmp/uat-pocket-preview.log 2>&1 &

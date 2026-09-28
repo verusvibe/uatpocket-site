@@ -67,7 +67,7 @@ No analytics SDK, tracking cookies or form logging is enabled. If an analytics a
 
 ## Verification
 
-Install Chromium with `npx playwright install chromium`, serve the exported site, then run `npm test`. `TEST_BASE_URL` can override the default local origin. Tests cover all four routes at 320, 390, 768, 1024 and 1440px; axe WCAG 2.2 AA checks; page overflow; menu keyboard/Escape behavior; form errors and honest preview status; support search; internal links/assets; and A4/Letter PDF output. Test screenshots and PDFs are in ignored `test-results/`.
+Install Chromium with `npx playwright install chromium webkit`, serve the exported site, then run `npm test`. `TEST_BASE_URL` can override the default local origin. Tests cover all four routes at 320, 390, 768, 1024 and 1440px; axe WCAG 2.2 AA checks; page overflow; menu keyboard/Escape behavior; form errors and honest preview status; support search; internal links/assets; and A4/Letter PDF output. Test screenshots and PDFs are in ignored `test-results/`.
 
 In the build environment, Chromium was installed at `/private/tmp/uat-pocket-browsers`; use `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/uat-pocket-browsers npm test` to reuse it. Automated accessibility checks supplement, and do not replace, assistive-technology testing.
 

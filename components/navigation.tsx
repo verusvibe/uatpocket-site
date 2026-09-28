@@ -10,6 +10,21 @@ export function Navigation() {
   useEffect(() => {
     if (open) nav.current?.querySelector<HTMLAnchorElement>("a")?.focus();
   }, [open]);
+  useEffect(() => {
+    if (!open) return;
+    const dismissOutside = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        !nav.current?.contains(target) &&
+        !button.current?.contains(target)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", dismissOutside);
+    return () => document.removeEventListener("pointerdown", dismissOutside);
+  }, [open]);
   return (
     <header className="header">
       <div className="container header-inner">
@@ -38,6 +53,9 @@ export function Navigation() {
           onBlur={(e) => {
             if (
               open &&
+              // Safari touch blurs the focused link with no next focus target
+              // before click. Keep the menu mounted until that click navigates.
+              e.relatedTarget !== null &&
               !e.currentTarget.contains(e.relatedTarget) &&
               e.relatedTarget !== button.current
             )

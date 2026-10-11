@@ -392,7 +392,7 @@ export default function Home() {
             "Evidence is stored in private cloud storage paths.",
             "Role-aware workflows separate customer and vendor actions.",
             "Important lifecycle changes are retained as an issue history.",
-            "Analytics must not include sensitive defect content.",
+            "Analytics does not include sensitive defect content.",
             "AI-assisted content requires review before submission.",
           ]}
         />

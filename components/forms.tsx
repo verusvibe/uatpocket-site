@@ -130,7 +130,6 @@ export function ContactForm({ kind }: { kind: "early" | "support" }) {
                         "Vendor workflow",
                         "Retest",
                         "Notifications",
-                        "Account deletion",
                         "Privacy or security",
                         "Other",
                       ]

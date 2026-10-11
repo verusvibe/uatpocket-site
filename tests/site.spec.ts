@@ -75,6 +75,33 @@ test("support search, empty result and request validation", async ({
   await page.getByRole("button", { name: "Send support request" }).click();
   await expect(page.getByLabel("Name *", { exact: true })).toBeFocused();
 });
+test("published policy content matches current app practices", async ({
+  page,
+}) => {
+  await page.goto(sitePath("/privacy/"));
+  const main = page.locator("main");
+  await expect(main).not.toContainText("Policy draft");
+  await expect(main).not.toContainText("90 Days");
+  await expect(main).toContainText("deleted from storage after 7 days");
+  await expect(main).toContainText(
+    "daily database backups are kept for 14 days",
+  );
+  await expect(main).toContainText("point-in-time recovery data for 7 days");
+  await expect(main).toContainText("Firebase Analytics and Crashlytics");
+  await expect(main).toContainText("Resend");
+  await expect(main).toContainText("Apple's speech recognition");
+  await expect(main).toContainText("Me → Delete Account");
+
+  await page.goto(sitePath("/support/"));
+  await page.getByLabel("Search support topics").fill("deleting");
+  const deletion = page.locator("details").first();
+  await deletion.locator("summary").click();
+  await expect(deletion).toContainText("Me → Delete Account");
+  await expect(deletion).toContainText("verusvibe@gmail.com");
+  await expect(page.locator("main")).not.toContainText(
+    "dedicated security contact shown on this page when configured",
+  );
+});
 test("internal links and local assets resolve", async ({ page, request }) => {
   const urls = new Set<string>();
   for (const route of ["/", "/product/", "/privacy/", "/support/"]) {

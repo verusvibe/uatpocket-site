@@ -844,6 +844,8 @@ details p {
   font-size: 0.85rem;
 }
 .toc a {
+  display: flex;
+  align-items: center;
   min-height: 44px;
   padding: 8px 0;
   color: var(--text-secondary);
@@ -861,6 +863,11 @@ details p {
   font-size: 0.9rem;
 }
 .policy-content p {
+  max-width: 780px;
+}
+.policy-content li {
+  line-height: 1.65;
+  margin-bottom: 10px;
   max-width: 780px;
 }
 .support-layout {

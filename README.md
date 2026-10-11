@@ -15,7 +15,7 @@ Use Node.js 22+ and npm. Run `npm ci`, copy `.env.example` to `.env.local` if co
 - `npm run build:preview` — optimized production compilation with unresolved values allowed **for local review only**. This is not a publish command. The preview has `noindex` metadata and disallow-all robots when no production origin is configured.
 - `npm run preview` — serve the export locally after building. Stop a running development server first.
 
-Do not publish preview output. Production builds intentionally fail until the required operator, policy and form-delivery configuration is complete. Public deployment has not been performed. Serve each route's exported `index.html` with normal directory URLs and configure the host's 404 page using `out/404.html`. Rebuild after changing environment variables; all website configuration is embedded at build time.
+Do not publish preview output. Production builds intentionally fail until the required operator and form-delivery configuration is complete. The privacy policy describes functionality delivered with the corresponding app release, including in-app account deletion, AI consent and verified-email access. Publish the policy only when that app release and its required functions and security rules are live. Serve each route's exported `index.html` with normal directory URLs and configure the host's 404 page using `out/404.html`. Rebuild after changing environment variables; all website configuration is embedded at build time.
 
 ## Owner-supplied configuration
 
@@ -23,26 +23,19 @@ All variables are documented in `.env.example`; all are public. Never place cred
 
 Required before launch:
 
-| Variable suffix (prefix `NEXT_PUBLIC_`) | Purpose / visible placeholder |
-| --- | --- |
-| `LEGAL_ENTITY` | `[LEGAL ENTITY]` |
-| `COPYRIGHT_OWNER` | `[COPYRIGHT OWNER]` |
-| `CONTACT_EMAIL` | Privacy `[CONTACT EMAIL]` |
-| `SUPPORT_EMAIL` | `[SUPPORT EMAIL]` |
-| `SECURITY_EMAIL` | `[SECURITY CONTACT EMAIL]` |
-| `EFFECTIVE_DATE` | `[EFFECTIVE DATE]` |
-| `RETENTION_POLICY` | Final retention periods, deletion and backup handling |
-| `PROCESSING_REGIONS` | Processing locations and transfer safeguards |
-| `SERVICE_PROVIDER_DETAILS` | Confirmed provider list and terms |
-| `AI_PROCESSING_TERMS` | AI provider data use and retention terms |
-| `LEGAL_BASES` | Applicable legal bases and user rights |
-| `SITE_URL` | HTTPS production origin; drives canonical/social URLs, robots and sitemap |
-| `EARLY_ACCESS_ENDPOINT` | HTTPS early-access delivery endpoint |
-| `SUPPORT_ENDPOINT` | HTTPS support delivery endpoint |
+| Variable suffix (prefix `NEXT_PUBLIC_`) | Purpose / visible placeholder                                             |
+| --------------------------------------- | ------------------------------------------------------------------------- |
+| `COPYRIGHT_OWNER`                       | `[COPYRIGHT OWNER]`                                                       |
+| `SUPPORT_EMAIL`                         | `[SUPPORT EMAIL]`                                                         |
+| `SECURITY_EMAIL`                        | `[SECURITY CONTACT EMAIL]`                                                |
+| `EFFECTIVE_DATE`                        | Policy publication date; set only for the coordinated app release         |
+| `SITE_URL`                              | HTTPS production origin; drives canonical/social URLs, robots and sitemap |
+| `EARLY_ACCESS_ENDPOINT`                 | HTTPS early-access delivery endpoint                                      |
+| `SUPPORT_ENDPOINT`                      | HTTPS support delivery endpoint                                           |
 
 Set `SUPPORT_PHONE` to a real phone number or `none` to omit telephone support. Optional: `COPYRIGHT_YEAR` (defaults to current build year). No App Store link or social-network links are invented. A real App Store URL can be added when supplied.
 
-The privacy document remains explicitly marked as a policy draft for owner review. Review the complete policy text and remove the draft notice only after approving the actual practices. This implementation makes no certification or regulatory-compliance claims.
+The privacy page is maintained from the canonical app policy in `../iOS/UAT Pocket/docs/PRIVACY_POLICY.md`. Its effective date remains a launch variable so the reviewed policy can be published together with the app release it describes.
 
 ## Form delivery contract
 

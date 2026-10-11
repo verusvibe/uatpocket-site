@@ -6,18 +6,11 @@ import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 const script = resolve("scripts/check-launch.mjs");
 const fixture = {
-  LEGAL_ENTITY: "Test operator",
   COPYRIGHT_OWNER: "Test operator",
-  CONTACT_EMAIL: "privacy@example.com",
   SUPPORT_EMAIL: "support@example.com",
   SUPPORT_PHONE: "none",
   SECURITY_EMAIL: "security@example.com",
   EFFECTIVE_DATE: "2026-09-26",
-  RETENTION_POLICY: "Test retention policy",
-  PROCESSING_REGIONS: "Test regions",
-  SERVICE_PROVIDER_DETAILS: "Test providers",
-  AI_PROCESSING_TERMS: "Test AI terms",
-  LEGAL_BASES: "Test legal bases",
   SITE_URL: "https://verusvibe.github.io",
   BASE_PATH: "/uatpocket-site",
   EARLY_ACCESS_ENDPOINT: "https://example.com/early",
@@ -49,10 +42,10 @@ test("complete configuration accepts no telephone support or a real phone number
   }
 });
 test("missing values and unresolved placeholders block publishing", () => {
-  for (const value of ["", "[LEGAL ENTITY]"]) {
-    const result = check({ LEGAL_ENTITY: value });
+  for (const value of ["", "[EFFECTIVE DATE]"]) {
+    const result = check({ EFFECTIVE_DATE: value });
     assert.equal(result.status, 1);
-    assert.match(result.stderr, /LEGAL_ENTITY/);
+    assert.match(result.stderr, /EFFECTIVE_DATE/);
   }
 });
 test("invalid endpoint, phone and site paths block publishing", () => {

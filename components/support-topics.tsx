@@ -44,13 +44,13 @@ const topics = [
   ],
   [
     "account-deletion",
-    "Requesting account deletion",
-    "Select Account deletion in the support form and provide your account email. Do not include your password. Identity verification may be required. Shared lifecycle history and other records may be retained according to the final retention policy; read the Privacy Policy for the current details.",
+    "Deleting your account",
+    "In the app, go to Me → Delete Account and complete the confirmation step. If you cannot access the app, email verusvibe@gmail.com from the address associated with your account. Never send your password. Your account, profile, notifications and registered devices are deleted; shared project records remain with their projects and identify you as “Deleted user”.",
   ],
   [
     "security",
     "Reporting a privacy or security concern",
-    "Use the dedicated security contact shown on this page when configured, or select Privacy or security in the support form. Describe the concern without including passwords, access tokens, sensitive defect evidence or unnecessary personal information.",
+    "Email the security address in the Talk to the team card, or select Privacy or security in the support form. Describe the concern without including passwords, access tokens, sensitive defect evidence or unnecessary personal information.",
   ],
 ];
 export function SupportTopics() {

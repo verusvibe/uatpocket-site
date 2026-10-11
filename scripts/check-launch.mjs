@@ -2,18 +2,11 @@ import nextEnv from "@next/env";
 const { loadEnvConfig } = nextEnv;
 loadEnvConfig(process.cwd());
 const required = [
-  "LEGAL_ENTITY",
   "COPYRIGHT_OWNER",
-  "CONTACT_EMAIL",
   "SUPPORT_EMAIL",
   "SUPPORT_PHONE",
   "SECURITY_EMAIL",
   "EFFECTIVE_DATE",
-  "RETENTION_POLICY",
-  "PROCESSING_REGIONS",
-  "SERVICE_PROVIDER_DETAILS",
-  "AI_PROCESSING_TERMS",
-  "LEGAL_BASES",
   "SITE_URL",
   "EARLY_ACCESS_ENDPOINT",
   "SUPPORT_ENDPOINT",
@@ -40,7 +33,7 @@ for (const key of ["SITE_URL", "EARLY_ACCESS_ENDPOINT", "SUPPORT_ENDPOINT"]) {
     }
   }
 }
-for (const key of ["CONTACT_EMAIL", "SUPPORT_EMAIL", "SECURITY_EMAIL"]) {
+for (const key of ["SUPPORT_EMAIL", "SECURITY_EMAIL"]) {
   const value = process.env[`NEXT_PUBLIC_${key}`];
   if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) invalid.push(key);
 }

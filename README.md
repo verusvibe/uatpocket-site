@@ -1,6 +1,6 @@
 # UAT Pocket website
 
-Responsive, static-exported Next.js App Router website built from `../iOS/UAT Pocket/docs/LANDING_PAGE_BUILD_PROMPT.md` and `../iOS/UAT Pocket/PROJECT_CONTEXT.md`. Routes: `/`, `/product`, `/privacy`, `/support`. The native iOS application and original screenshots are unchanged.
+Responsive, static-exported Next.js App Router website built from `../iOS/UAT Pocket/docs/LANDING_PAGE_BUILD_PROMPT.md` and `../Backend/docs/PROJECT_CONTEXT.md`. Screenshots come from `../Design/Store Assets/ios/App Store Screenshots`. Routes: `/`, `/product`, `/privacy`, `/support`. The native iOS application and original screenshots are unchanged.
 
 ## Develop
 

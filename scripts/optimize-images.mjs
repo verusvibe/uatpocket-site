@@ -3,7 +3,7 @@ import { readdir, mkdir } from "node:fs/promises";
 import path from "node:path";
 const source = path.resolve(
   process.env.UAT_SCREENSHOT_SOURCE ||
-    "../iOS/UAT Pocket/docs/App Store Screenshots/iPhone 6.5-inch - App Store Connect",
+    "../Design/Store Assets/ios/App Store Screenshots/iPhone 6.5-inch - App Store Connect",
 );
 await mkdir("public/images", { recursive: true });
 for (const file of (await readdir(source)).filter((x) => x.endsWith(".png"))) {

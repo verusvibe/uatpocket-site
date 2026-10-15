@@ -8,7 +8,7 @@ export function sitePath(path: string): string {
   if (basePath && (path === basePath || path.startsWith(`${basePath}/`)))
     return path;
   const normalized = path.replace(
-    /^\/(product|privacy|support)(?=[?#]|$)/,
+    /^\/(product|privacy|support|delete-account)(?=[?#]|$)/,
     "/$1/",
   );
   return `${basePath}${normalized}`;

@@ -2,7 +2,7 @@ import { sitePath } from "../lib/urls";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 for (const width of [320, 390, 768, 1024, 1440])
-  for (const route of ["/", "/product/", "/privacy/", "/support/"])
+  for (const route of ["/", "/product/", "/privacy/", "/support/", "/delete-account/"])
     test(`${route} at ${width}px: layout, images and accessibility`, async ({
       page,
     }) => {
@@ -104,7 +104,7 @@ test("published policy content matches current app practices", async ({
 });
 test("internal links and local assets resolve", async ({ page, request }) => {
   const urls = new Set<string>();
-  for (const route of ["/", "/product/", "/privacy/", "/support/"]) {
+  for (const route of ["/", "/product/", "/privacy/", "/support/", "/delete-account/"]) {
     await page.goto(sitePath(route));
     const links = await page
       .locator('a[href^="/"],img[src^="/"]')
@@ -142,7 +142,7 @@ test("product print hides navigation and fits both paper formats", async ({
 });
 
 test("metadata retains the repository subpath", async ({ page, request }) => {
-  for (const route of ["/", "/product/", "/privacy/", "/support/"]) {
+  for (const route of ["/", "/product/", "/privacy/", "/support/", "/delete-account/"]) {
     await page.goto(sitePath(route));
     const canonical = await page
       .locator('link[rel="canonical"]')

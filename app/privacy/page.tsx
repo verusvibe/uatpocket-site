@@ -1,4 +1,4 @@
-import { siteUrl } from "@/lib/urls";
+import { sitePath, siteUrl } from "@/lib/urls";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -279,7 +279,9 @@ const sections: PolicySection[] = [
         <p>
           If you cannot access the app, contact{" "}
           <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a> from the email
-          address on your account. Never send your password.
+          address on your account. Never send your password. See{" "}
+          <a href={sitePath("/delete-account")}>Delete your account</a> for the
+          full request process.
         </p>
       </>
     ),

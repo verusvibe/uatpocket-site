@@ -100,6 +100,7 @@ export function Footer() {
         <a href={sitePath("/product")}>Product One-Pager</a>
         <a href={sitePath("/support")}>Support</a>
         <a href={sitePath("/privacy")}>Privacy Policy</a>
+        <a href={sitePath("/delete-account")}>Delete Account</a>
         <a href={sitePath("/#early-access")}>Request Early Access</a>
       </nav>
       <div className="copyright">

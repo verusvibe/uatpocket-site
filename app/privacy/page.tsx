@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 const title = "Privacy Policy";
 const description =
-  "How UAT Pocket collects, uses, stores, shares, retains, and deletes personal information.";
+  "How the UAT Pocket iPhone and Android apps and website collect, use, store, share, retain, and delete personal information.";
 const privacyEmail = "verusvibe@gmail.com";
 const effectiveDate =
   process.env.NEXT_PUBLIC_EFFECTIVE_DATE?.trim() ||
@@ -74,11 +74,14 @@ const sections: PolicySection[] = [
         </p>
         <p>
           <strong>Voice recordings:</strong> recordings are made on your device
-          and transcribed using Apple&apos;s speech recognition, which may
-          process the audio on Apple&apos;s servers. The audio is not uploaded
-          to UAT Pocket; only the transcript you review and keep is saved with
-          the issue. The temporary recording is deleted from your device when
-          you discard or re-record it.
+          and transcribed by your device&apos;s speech recognition service:
+          Apple&apos;s speech recognition on iPhone, or the speech recognition
+          service configured on your Android device (Android 13 or later). Either
+          may process the audio on the provider&apos;s servers. The audio is not
+          uploaded to UAT Pocket; only the transcript you review and keep is
+          saved with the issue. The temporary recording stays on your device and
+          is deleted when you discard or re-record it, or when you leave the
+          recording screen.
         </p>
         <p>
           <strong>Device and notification information:</strong> a push
@@ -89,9 +92,12 @@ const sections: PolicySection[] = [
         <p>
           <strong>Analytics and diagnostics:</strong> limited usage events, such
           as an issue being submitted or an AI draft being requested, and crash
-          and error reports containing error codes. Firebase Analytics and
-          Crashlytics do not receive defect content, comments, form messages or
-          email addresses.
+          and error reports containing error codes. Crash reports also include
+          technical details such as the device model, operating-system version
+          and app version. Firebase Analytics and Crashlytics do not receive
+          defect content, comments, form messages or email addresses. The apps
+          do not collect advertising identifiers; on Android, Advertising ID
+          collection and ad-personalisation signals are turned off.
         </p>
         <p>
           <strong>Issue exports:</strong> when a project owner or admin exports
@@ -136,7 +142,7 @@ const sections: PolicySection[] = [
           nothing is submitted until you choose <strong>Submit Issue</strong>.
           You can always create issues manually instead, and you can withdraw
           permission at any time in{" "}
-          <strong>Me → Privacy → Allow AI drafting</strong>.
+          <strong>Me → Privacy → Withdraw AI Drafting Permission</strong>.
         </p>
         <p>
           Google processes AI requests under the Firebase AI Logic and Gemini
@@ -158,9 +164,15 @@ const sections: PolicySection[] = [
             drafting through Gemini.
           </li>
           <li>
-            <strong>Apple:</strong> Sign in with Apple, speech recognition and
+            <strong>Apple:</strong> Sign in with Apple, if you choose it (on
+            iPhone and Android); on iPhone, also speech recognition and
             push-notification delivery. Apple&apos;s speech recognition may
             process audio on Apple&apos;s servers.
+          </li>
+          <li>
+            <strong>Your Android device&apos;s speech recognition provider:</strong>{" "}
+            voice transcription on Android. Processing and retention follow the
+            terms of the provider configured on your device (often Google).
           </li>
           <li>
             <strong>Resend:</strong> delivery of issue-export emails.
@@ -181,8 +193,9 @@ const sections: PolicySection[] = [
         The project database and server functions run in Google Cloud&apos;s
         Singapore region (asia-southeast1). Evidence files are stored in private
         Firebase Cloud Storage. Some providers, including Firebase
-        Authentication, Analytics, Crashlytics, Apple and Resend, may process
-        information in other countries, including the United States.
+        Authentication, Analytics, Crashlytics, Apple, your device&apos;s speech
+        recognition provider and Resend, may process information in other
+        countries, including the United States.
       </p>
     ),
   },
@@ -285,9 +298,9 @@ const sections: PolicySection[] = [
           a request; we may need to verify your identity.
         </p>
         <p>
-          You can also manage camera, microphone, speech-recognition and
-          notification permissions in your device&apos;s Settings, and turn off
-          AI drafting in the app.
+          You can also manage camera, photo, microphone, speech-recognition (on
+          iPhone) and notification permissions in your device&apos;s Settings,
+          and withdraw AI drafting permission in the app.
         </p>
       </>
     ),
@@ -325,7 +338,7 @@ export default function PrivacyPage() {
         <h1>Privacy Policy</h1>
         <p className="lead">
           This policy explains how UAT Pocket handles personal information
-          across the app and this website.
+          across the iPhone and Android apps and this website.
         </p>
         <p>
           <strong>Effective:</strong> {effectiveDate}

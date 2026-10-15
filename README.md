@@ -35,7 +35,7 @@ Required before launch:
 
 Set `SUPPORT_PHONE` to a real phone number or `none` to omit telephone support. Optional: `COPYRIGHT_YEAR` (defaults to current build year). No App Store link or social-network links are invented. A real App Store URL can be added when supplied.
 
-The privacy page is maintained from the canonical app policy in `../iOS/UAT Pocket/docs/PRIVACY_POLICY.md`. Its effective date remains a launch variable so the reviewed policy can be published together with the app release it describes.
+`app/privacy/page.tsx` is the single source of the UAT Pocket privacy policy for the iPhone app, the Android app and this website; the app repositories link to the published page rather than keeping copies. Its effective date remains a launch variable so the reviewed policy can be published together with the app release it describes.
 
 ## Form delivery contract
 
